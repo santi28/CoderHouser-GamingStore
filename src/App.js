@@ -1,10 +1,11 @@
+import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1>Tienda de Informatica</h1>
+      <ItemListContainer greeting="Bienvenido a The Gaming Store!" />
     </div>
   );
 }
