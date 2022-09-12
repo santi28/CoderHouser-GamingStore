@@ -1,10 +1,6 @@
-import ItemList from './ItemList';
-
 function ItemListContainer({ greeting }) {
   return (
-    <div className='py-6'>
-      <ItemList />
-    </div>
+    <h1 className="py-4 text-2xl font-bold text-center">{ greeting || 'Aqui va el catalogo' }</h1>
   )
 }
 
