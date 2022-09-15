@@ -1,6 +1,7 @@
-function Item({ img, alt, title, price, children }) {
+function Item({ id, img, alt, title, price, children }) {
   return (
-    <div
+    <a
+      href={`/item/${id}`}
       className="flex flex-col gap-3 overflow-hidden rounded-xl bg-slate-200">
       <img 
         className="object-cover w-full h-48 rounded-xl"
@@ -11,7 +12,7 @@ function Item({ img, alt, title, price, children }) {
         <span className="p-2 px-3 shadow text-slate-100 rounded-xl bg-slate-700">{price}</span>
       </div>
       <p className="px-3 pb-4">{children}</p>
-    </div>
+    </a>
   )
 }
 

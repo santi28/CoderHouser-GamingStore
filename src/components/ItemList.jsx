@@ -87,7 +87,7 @@ function ItemList() {
       {
         productos.map(producto =>
           <Item
-            key={producto.id}
+            id={producto.id}
             img={producto.img}
             alt={producto.alt}
             title={producto.title}
