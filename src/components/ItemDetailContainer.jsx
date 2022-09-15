@@ -27,6 +27,7 @@ function ItemDetailContainer() {
         setIsLoading(false)
       })
       .catch(err => console.err(err))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
