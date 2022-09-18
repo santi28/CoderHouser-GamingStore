@@ -1,6 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🛒 Gaming Store
+GamingStore es una tienda online dedicada a la venta de articulos gaming (VIDEOJUEGOS Y CONSOLAS)
 
 ## Available Scripts
 

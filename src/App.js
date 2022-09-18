@@ -1,7 +1,7 @@
-// import ItemCount from "./components/ItemCount";
-// import ItemListContainer from "./components/ItemListContainer";
+import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import NavBar from "./components/NavBar";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   // const onAddHandler = (event) => {
@@ -9,12 +9,14 @@ function App() {
   // }
 
   return (
-    <div className="App">
+    <BrowserRouter className="App">
       <NavBar />
-      {/* <ItemListContainer greeting="Bienvenido a The Gaming Store!" /> */}
-      <ItemDetailContainer />
-      {/* <ItemCount stock={5} onAdd={(event) => onAddHandler(event)}/> */}
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />}/>
+        <Route path="/categories/:category" element={<ItemListContainer />}/>
+        <Route path="/item/:id" element={<ItemDetailContainer />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
