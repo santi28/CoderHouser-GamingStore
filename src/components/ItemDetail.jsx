@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../contexts/CartContext';
 import ItemCount from './ItemCount';
 
-function ItemDetail({ img, title, categories, price, description, stock }) {
+function ItemDetail({ id, img, title, categories, price, description, stock }) {
   const [isAbleToBuy, setIsAbleToBuy] = useState(false);
   const [quantity, setQuantity] = useState(0)
   const { addToCart } = useCartContext();
@@ -14,7 +14,7 @@ function ItemDetail({ img, title, categories, price, description, stock }) {
   }
 
   const addToCartHandler = () => {
-    addToCart({ img, title, categories, price, description, stock }, quantity)
+    addToCart({ id, img, title, categories, price, description, stock }, quantity)
   }
 
   return (
