@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import '../css/styles.css'
 import CartWidget from './CardWidget'
 
@@ -9,10 +10,10 @@ function NavBar() {
       </a>
       <nav>
         <ul className='flex gap-4 font-bold text-white text-md'>
-          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><a href="/">Inicio</a></li>
-          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><a href="/categories/games">Juegos</a></li>
-          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><a href="/categories/consoles">Consolas</a></li>
-          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><a href="/">Tutoriales</a></li>
+          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/">Inicio</Link></li>
+          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/categories/games">Juegos</Link></li>
+          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/categories/consoles">Consolas</Link></li>
+          <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/">Tutoriales</Link></li>
           <li><CartWidget /></li>
         </ul>
       </nav>

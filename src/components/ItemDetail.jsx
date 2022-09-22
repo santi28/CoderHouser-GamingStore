@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../contexts/CartContext';
 import ItemCount from './ItemCount';
 
 function ItemDetail({ img, title, categories, price, description, stock }) {
   const [isAbleToBuy, setIsAbleToBuy] = useState(false);
+  const [quantity, setQuantity] = useState(0)
+  const { addToCart } = useCartContext();
 
   const onAddHandler = (quantity) => {
-    console.log(quantity);
+    setQuantity(quantity)
     setIsAbleToBuy(quantity > 0) // Habilitamos la opcion de compra si la cantidad supera a 0
+  }
+
+  const addToCartHandler = () => {
+    addToCart({ img, title, categories, price, description, stock }, quantity)
   }
 
   return (
@@ -20,9 +27,10 @@ function ItemDetail({ img, title, categories, price, description, stock }) {
         </div>
         <span className="text-5xl font-light">{price}</span>
         <p>{description}</p>
-        <div className='flex w-full gap-4'>
-          <ItemCount className="flex-1" stock={stock} onAdd={onAddHandler} initial={0}/>
-          { isAbleToBuy ? <Link to='/cart' className="flex items-center justify-center flex-1 text-white rounded-lg bg-slate-900">Comprar ahora!</Link> : null }
+        <div className='flex flex-col w-full gap-4'>
+          <ItemCount className="flex-1" stock={stock} onAdd={onAddHandler} initial={quantity}/>
+          { isAbleToBuy ? <button onClick={() => addToCartHandler()} className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Añadir al carrito</button> : null }
+          { isAbleToBuy ? <Link to='/cart' className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Comprar ahora!</Link> : null }
         </div>
       </div>
       {/* <img src="/images/gaming.jpg" alt="ALT" className="flex-1" />
@@ -34,3 +42,4 @@ function ItemDetail({ img, title, categories, price, description, stock }) {
 }
 
 export default ItemDetail
+
