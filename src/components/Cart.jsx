@@ -4,7 +4,7 @@ import { useCartContext } from '../contexts/CartContext'
 import CartItem from './CartItem'
 
 function CartPage() {
-  const { cart, getTotal } = useCartContext()
+  const { cart, clearCart, getTotal } = useCartContext()
 
   return (
     <div className='flex flex-col w-full max-w-4xl gap-6 px-5 m-auto mt-4'>
@@ -19,7 +19,14 @@ function CartPage() {
             </div>
         }
       </div>
-      { (getTotal() !== 0) ? <p className='w-full text-lg italic text-right'>Total: ${getTotal()}</p> : null }
+      { 
+        (getTotal() !== 0) ?
+          <div className='flex items-center justify-end gap-5'>
+            <p className='text-lg italic'>Total: ${getTotal()}</p>
+            <button onClick={clearCart} className='flex items-center justify-center px-5 py-2 text-white rounded-lg bg-slate-900'>Finalizar compra</button>
+          </div>:
+          null 
+      }
     </div>
   )
 }

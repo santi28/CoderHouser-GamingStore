@@ -11,7 +11,7 @@ function CartItem({ product }) {
   const onAddHandler = (quant) => {
     addToCart(product, quant)
     setQuantity(quant)
-    toast("Carrito actualizado!")
+    toast("Carrito actualizado!") 
   }
 
   return (
