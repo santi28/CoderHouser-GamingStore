@@ -1,20 +1,26 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useCartContext } from '../contexts/CartContext';
 import ItemCount from './ItemCount';
 
 function ItemDetail({ id, img, title, categories, price, description, stock }) {
-  const [isAbleToBuy, setIsAbleToBuy] = useState(false);
-  const [quantity, setQuantity] = useState(0)
-  const { addToCart } = useCartContext();
+  const { cart, addToCart } = useCartContext();
+  const [quantity, setQuantity] = useState(cart.find(product => product.id === id)?.quantity ?? 0)
 
-  const onAddHandler = (quantity) => {
-    setQuantity(quantity)
-    setIsAbleToBuy(quantity > 0) // Habilitamos la opcion de compra si la cantidad supera a 0
+  const onAddHandler = (gettedQuantity) => {
+    // En caso de restarse la cantidad, directamente se guarda en el carrito
+    if ((cart.find(product => product.id === id)?.quantity ?? 0) !== 0 && quantity >= gettedQuantity) {
+      addToCart({ id, img, title, categories, price, description, stock }, gettedQuantity)
+      toast("Carrito actualizado!")
+    }
+
+    setQuantity(gettedQuantity)
   }
 
   const addToCartHandler = () => {
     addToCart({ id, img, title, categories, price, description, stock }, quantity)
+    toast('Producto añadido al carrito!')
   }
 
   return (
@@ -25,12 +31,12 @@ function ItemDetail({ id, img, title, categories, price, description, stock }) {
         <div className="flex flex-row flex-wrap gap-3">
           { categories.map((tag, index) => <span key={index} className="px-3 py-1 text-white rounded-lg bg-slate-900">{tag}</span>) }          
         </div>
-        <span className="text-5xl font-light">{price}</span>
+        <span className="text-5xl font-light">${price}</span>
         <p>{description}</p>
         <div className='flex flex-col w-full gap-4'>
           <ItemCount className="flex-1" stock={stock} onAdd={onAddHandler} initial={quantity}/>
-          { isAbleToBuy ? <button onClick={() => addToCartHandler()} className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Añadir al carrito</button> : null }
-          { isAbleToBuy ? <Link to='/cart' className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Comprar ahora!</Link> : null }
+          { quantity > 0 ? <button onClick={() => addToCartHandler()} className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Añadir al carrito</button> : null }
+          { quantity > 0 ? <Link to='/cart' className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Comprar ahora!</Link> : null }
         </div>
       </div>
       {/* <img src="/images/gaming.jpg" alt="ALT" className="flex-1" />

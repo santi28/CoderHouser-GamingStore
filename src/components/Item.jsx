@@ -11,7 +11,7 @@ function Item({ id, img, alt, title, price, children }) {
         alt={alt}/>
       <div className="flex items-center justify-between px-3">
         <h3 className="text-lg italic font-bold">{title}</h3>
-        <span className="p-2 px-3 shadow text-slate-100 rounded-xl bg-slate-700">{price}</span>
+        <span className="p-2 px-3 shadow text-slate-100 rounded-xl bg-slate-700">${price}</span>
       </div>
       <p className="px-3 pb-4">{children}</p>
     </Link>

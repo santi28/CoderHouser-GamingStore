@@ -14,7 +14,7 @@ function NavBar() {
           <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/categories/games">Juegos</Link></li>
           <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/categories/consoles">Consolas</Link></li>
           <li className='p-2 px-4 rounded-full cursor-pointer hover:bg-slate-100 hover:text-slate-900'><Link to="/">Tutoriales</Link></li>
-          <li><CartWidget /></li>
+          <li><Link to="/cart"><CartWidget /></Link></li>
         </ul>
       </nav>
     </header>
