@@ -13,9 +13,10 @@ function ItemList() {
   useEffect(() => {
     const db = getFirestore()
     const queryCollection = collection(db, 'productos')
+
     getDocs(queryCollection)
       .then(res => res.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-      .then(pretty => setProductos(pretty.filter(product => product.categories.includes(category))))
+      .then(pretty => setProductos(pretty.filter(product => category ? product.categories.includes(category) : product)))
   }, [category])
 
   return (
