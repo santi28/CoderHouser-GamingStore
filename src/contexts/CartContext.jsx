@@ -19,13 +19,18 @@ const CartProvider = ({ children }) => {
     setCart(newCart)
   }
 
+  const setNewQuantity = (id, quantity) => {
+    const finded = cart.find(product => product.id === id)
+    finded.quantity = quantity;
+  }
+
   const getSubTotal = () => cart.reduce((acc, product) => acc + product.quantity, 0)
   const getTotal = () => cart.reduce((acc, product) => acc + product.quantity * product.price, 0)
 
   console.log(cart);
 
   return (
-    <CartContext.Provider value={{ cart, clearCart, isInCart, removeProduct, addToCart, getTotal, getSubTotal }}>
+    <CartContext.Provider value={{ cart, clearCart, isInCart, removeProduct, addToCart, getTotal, getSubTotal, setNewQuantity }}>
       { children }
     </CartContext.Provider>
   )
