@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCartContext } from '../contexts/CartContext';
 import ItemCount from './ItemCount';
 
 function ItemDetail({ id, img, title, categories, price, description, stock }) {
+  const navigate = useNavigate()
   const { cart, addToCart } = useCartContext();
   const [quantity, setQuantity] = useState(cart.find(product => product.id === id)?.quantity ?? 0)
 
@@ -16,6 +17,11 @@ function ItemDetail({ id, img, title, categories, price, description, stock }) {
     }
 
     setQuantity(gettedQuantity)
+  }
+
+  const buyNow = () => {
+    addToCart({ id, img, title, categories, price, description, stock }, 1);
+    navigate("/cart")
   }
 
   const addToCartHandler = () => {
@@ -36,7 +42,7 @@ function ItemDetail({ id, img, title, categories, price, description, stock }) {
         <div className='flex flex-col w-full gap-4'>
           <ItemCount className="flex-1" stock={stock} onAdd={onAddHandler} initial={quantity}/>
           { quantity > 0 ? <button onClick={() => addToCartHandler()} className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Añadir al carrito</button> : null }
-          { quantity > 0 ? <Link to='/cart' className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Comprar ahora!</Link> : null }
+          <button onClick={buyNow} className="flex items-center justify-center flex-1 py-2 text-white rounded-lg bg-slate-900">Comprar ahora!</button>
         </div>
       </div>
       {/* <img src="/images/gaming.jpg" alt="ALT" className="flex-1" />

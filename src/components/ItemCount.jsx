@@ -13,7 +13,7 @@ function ItemCount({ label, stock = 1, initial, onAdd, className }) {
     <>
       { label !== undefined ? <span>{ label }</span> : null }
       <div
-        className={`flex items-center justify-center overflow-hidden border-2 rounded-lg ${className.split(" ")}`}>
+        className={`flex items-center justify-center overflow-hidden border-2 rounded-lg ${className?.split(" ")}`}>
         <button
           className="px-2 py-2 bg-gray-200 disabled:opacity-30"
           disabled={counter <= 0}
