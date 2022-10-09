@@ -2,6 +2,7 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useCartContext } from '../contexts/CartContext'
 import CartItem from './CartItem'
 
@@ -28,7 +29,9 @@ function CartPage() {
       .then(({id}) => console.log(id))
 
     clearCart()
-    console.log(order)
+    setTotal(0)
+
+    toast("El pedido se ha procesado con exito!")
   }
 
   const onAddHandler = () => {
