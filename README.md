@@ -22,3 +22,12 @@ Se utilizó la libreria de firebase que provee una estructura para la integraci�
 
 #### **React Toastify**
 React Toastify es una libreria que permite generar de manera sencilla y rapida los toast que dan feedback a las acciónes realizadas en la aplicación
+
+## Dependencias
+```bash
+git clone https://github.com/santi28/CoderHouser-GamingStore
+cd CoderHouser-GamingStore
+npm install
+npm start
+```
+_Requiere NodeJS_
