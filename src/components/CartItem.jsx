@@ -4,13 +4,16 @@ import { HiTrash } from 'react-icons/hi'
 import { useCartContext } from '../contexts/CartContext'
 import ItemCount from './ItemCount'
 
-function CartItem({ product }) {
+function CartItem({ product, onAdd }) {
   const { setNewQuantity, removeProduct } = useCartContext()
   const [quantity, setQuantity] = useState(product.quantity ?? 0)
 
   const onAddHandler = (event) => {
     setQuantity(event)
     setNewQuantity(product.id, event)
+
+    if (event === 0) removeProduct(product.id)
+    onAdd()
   }
 
   return (
@@ -23,7 +26,7 @@ function CartItem({ product }) {
         </div>
         <div className='flex items-center gap-2'>
           <ItemCount className="w-32" onAdd={onAddHandler} initial={quantity} stock={product.stock}/>
-          <button onClick={() => removeProduct(product.id)}><HiTrash className='text-3xl text-rose-600'/></button>
+          <button onClick={() => onAddHandler(0)}><HiTrash className='text-3xl text-rose-600'/></button>
         </div>
       </div>
     </div>
